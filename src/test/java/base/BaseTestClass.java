@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.Properties;
 
 public class BaseTestClass {
@@ -26,6 +27,7 @@ public class BaseTestClass {
         webDriver.manage().window().maximize();
         fileInputStream = new FileInputStream(filePath);
         properties.load(fileInputStream);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         //webDriver.get(visitURL);
     }
 
