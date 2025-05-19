@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -17,7 +18,8 @@ public class BaseTestClass {
     protected WebDriver webDriver;
     protected FileInputStream fileInputStream;
     protected Properties properties = new Properties();
-    Path path = Paths.get(System.getProperty("user.dir"),"src","test","resources","pagecontent.properties");
+    Path path = Paths.get(System.getProperty("user.dir"), "src", "test", "resources", "pagecontent.properties");
+    protected WebDriverWait wait;
     String filePath = path.toString();
 
 
@@ -28,6 +30,7 @@ public class BaseTestClass {
         fileInputStream = new FileInputStream(filePath);
         properties.load(fileInputStream);
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        wait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
         //webDriver.get(visitURL);
     }
 
