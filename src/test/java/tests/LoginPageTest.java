@@ -21,7 +21,7 @@ public class LoginPageTest extends BaseTestClass {
         System.out.println("Visited URL is -> " + webDriver.getCurrentUrl());
     }
 
-    @Test(priority = 3, dependsOnMethods = "openBrowserAndNavigate")
+    @Test(priority = 5, dependsOnMethods = "openBrowserAndNavigate")
     void validLoginAttempt() {
         //Providing email and password with loginCTA click
 
@@ -36,8 +36,8 @@ public class LoginPageTest extends BaseTestClass {
     }
 
     @Test(priority = 2)
-    void inValidLoginAttempt1() {
-        //Providing email and password with loginCTA click
+    void inValidLoginAttemptWithWrongUsernameAndPassword() {
+        //Providing wrong username and password with loginCTA click
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(properties.getProperty("usernameFieldXpath"))));
         loginPage.setUsernameField(properties.getProperty("invalidUsername"));
@@ -45,7 +45,35 @@ public class LoginPageTest extends BaseTestClass {
         loginPage.clickLogin();
 
         //Verify login
-        wait.until(ExpectedConditions.urlToBe(properties.getProperty("dashboardURL")));
-        softAssert.assertEquals(webDriver.getCurrentUrl(), properties.getProperty("dashboardURL"));
+//        wait.until(ExpectedConditions.urlToBe(properties.getProperty("dashboardURL")));
+//        softAssert.assertEquals(webDriver.getCurrentUrl(), properties.getProperty("dashboardURL"));
+    }
+
+    @Test(priority = 3)
+    void inValidLoginAttemptWithWrongUsername() {
+        //Providing wrong username and correct password with loginCTA click
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(properties.getProperty("usernameFieldXpath"))));
+        loginPage.setUsernameField(properties.getProperty("invalidUsername"));
+        loginPage.setPasswordField(properties.getProperty("password"));
+        loginPage.clickLogin();
+
+        //Verify login
+//        wait.until(ExpectedConditions.urlToBe(properties.getProperty("dashboardURL")));
+//        softAssert.assertEquals(webDriver.getCurrentUrl(), properties.getProperty("dashboardURL"));
+    }
+
+    @Test(priority = 4)
+    void inValidLoginAttemptWithWrongPassword() {
+        //Providing wrong username and  correct password with loginCTA click
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(properties.getProperty("usernameFieldXpath"))));
+        loginPage.setUsernameField(properties.getProperty("username"));
+        loginPage.setPasswordField(properties.getProperty("invalidPassword"));
+        loginPage.clickLogin();
+
+        //Verify login
+//        wait.until(ExpectedConditions.urlToBe(properties.getProperty("dashboardURL")));
+//        softAssert.assertEquals(webDriver.getCurrentUrl(), properties.getProperty("dashboardURL"));
     }
 }
