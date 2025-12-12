@@ -1,0 +1,6 @@
+Let's check if this file is causing any Issue to the program
+
+Now this file will serves as blackboard of the work and ideas
+
+Okay so, I have QAPlayGround work, where I am trying to design framework for the project, using current scalable standard
+Including pom and what note
