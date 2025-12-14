@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 import pages.LoginPage;
 
 
-public class LoginPageTest extends BaseTestClass {
+public class QAPlaygroundLoginPageTest extends BaseTestClass {
     LoginPage loginPage;
     SoftAssert softAssert;
 

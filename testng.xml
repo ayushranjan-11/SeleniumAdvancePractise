@@ -4,7 +4,7 @@
     <test verbose="2" preserve-order="true"
           name="C:/Users/ayush/IdeaProjects/OrangeHRM/src/test/java/pages/LoginPage.java">
         <classes>
-            <class name="tests.LoginPageTest"/>
+            <class name="tests.QAPlaygroundLoginPageTest"/>
         </classes>
     </test>
 </suite>
