@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.ElementUtil;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -17,11 +18,13 @@ public class QAPlaygroundTransaction {
     WebDriver driver;
     WebDriverWait wait;
     WebElement webElement;
-    Select select = new Select(webElement);
+    Select select;
+    ElementUtil elementUtil;
 
     public QAPlaygroundTransaction(WebDriver webDriver, WebDriverWait webDriverWait) {
         this.driver = webDriver;
         this.wait = webDriverWait;
+        elementUtil = new ElementUtil(driver);
 
     }
 
@@ -36,12 +39,16 @@ public class QAPlaygroundTransaction {
     private By submitTransaction = By.id("submit-transaction-btn");
 
     public void transactionCTAClick() {
-        wait.until(ExpectedConditions.elementToBeClickable(transactionCTA));
-        driver.findElement(transactionCTA).click();
+//        wait.until(ExpectedConditions.elementToBeClickable(transactionCTA));
+//        driver.findElement(transactionCTA).click();
+
+        elementUtil.performClick(transactionCTA,10); //This is introduced with ElementUtil class
 
         //Adding transaction dialog box heading grab to verify if the section was opened successfully
-        wait.until(ExpectedConditions.visibilityOfElementLocated(modalTitle));
-        System.out.println(driver.findElement(modalTitle).getText());
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(modalTitle));
+//        System.out.println(driver.findElement(modalTitle).getText());
+
+        System.out.println(elementUtil.getElementText(modalTitle,10));
     }
 
 
