@@ -19,7 +19,7 @@ public class DashboardTest extends BaseTestClass {
     public void transactionCheck(){
         transactionAction = new QAPlaygroundTransaction(webDriver,wait);
         transactionAction.transactionCTAClick();
-        transactionAction.selectTransactionType();
+        transactionAction.selectTransactionType("Deposit");
         transactionAction.selectFromAccount();
     }
 }

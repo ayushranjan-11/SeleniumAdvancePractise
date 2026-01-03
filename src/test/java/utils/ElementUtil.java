@@ -10,34 +10,35 @@ import java.time.Duration;
 
 public class ElementUtil {
     private WebDriver webDriver;
+    int timeout = 10;
 
     public ElementUtil(WebDriver driver){
         this.webDriver = driver;
     }
 
-    private WebElement getElement(By locator){
-        return webDriver.findElement(locator);
+    public  WebElement getElement(By locator){
+        return waitForElementVisible(locator);
     }
 
-    public void performClick(By locator, int timeoutDuration){
-        WebElement element = waitForElementVisible(locator,timeoutDuration);
+    public void performClick(By locator){
+        WebElement element = waitForElementVisible(locator);
         element.click();
     }
 
-    public void sendKeys(By locator, int timeoutDuration, String textToSend){
+    public void sendKeys(By locator, String textToSend){
         //Adding WebElement for input field to perform click before sending keys
-        WebElement webElement = waitForElementVisible(locator, timeoutDuration);
+        WebElement webElement = waitForElementVisible(locator);
         webElement.clear();
         webElement.sendKeys(textToSend);
     }
 
-    public WebElement waitForElementVisible(By locator, int timeout){
+    public WebElement waitForElementVisible(By locator){
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public String getElementText(By locator, int timeout){
-        WebElement element = waitForElementVisible(locator, timeout);
+    public String getElementText(By locator){
+        WebElement element = waitForElementVisible(locator);
         return element.getText();
     }
 }
