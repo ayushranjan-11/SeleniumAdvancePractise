@@ -21,5 +21,9 @@ public class DashboardTest extends BaseTestClass {
         transactionAction.transactionCTAClick();
         transactionAction.selectTransactionType("Deposit");
         transactionAction.selectFromAccount();
+        transactionAction.setAmount();
+        transactionAction.setDescriptionInputField("Description");
+        transactionAction.submitCTAClick();
+        transactionAction.acceptAlert();
     }
 }

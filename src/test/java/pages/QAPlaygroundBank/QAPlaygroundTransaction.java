@@ -3,11 +3,15 @@ package pages.QAPlaygroundBank;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.ElementUtil;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //To make transaction across available account
 public class QAPlaygroundTransaction {
@@ -17,11 +21,13 @@ public class QAPlaygroundTransaction {
     //WebElement webElement;
     Select select;
     ElementUtil elementUtil;
+    Logger logger = Logger.getLogger(QAPlaygroundTransaction.class.getName());
 
     public QAPlaygroundTransaction(WebDriver webDriver, WebDriverWait webDriverWait) {
         this.driver = webDriver;
         this.wait = webDriverWait;
         elementUtil = new ElementUtil(driver);
+        logger.setLevel(Level.FINE);
 
     }
 
@@ -35,6 +41,7 @@ public class QAPlaygroundTransaction {
     private By sendNotificationCheckBox = By.id("send-notification");
     private By cancelCTA = By.id("cancel-transaction-btn");
     private By submitTransaction = By.id("submit-transaction-btn");
+    private String expectedAlertPostTransaction = "Transaction completed successfully!";
 
     public void transactionCTAClick() {
 //        wait.until(ExpectedConditions.elementToBeClickable(transactionCTA));
@@ -61,6 +68,7 @@ public class QAPlaygroundTransaction {
 
         elementUtil.performClick(transactionTypeDropdownOption);
         elementUtil.performClick(transactionTypeOptionSelect);
+        logger.info("Adding transaction type");
 
     }
 
@@ -76,5 +84,31 @@ public class QAPlaygroundTransaction {
         List<WebElement> fromAccountOptions = select.getOptions();
 
         select.selectByValue(fromAccountOptions.get(1).getDomProperty("value"));
+    }
+
+    public void setAmount(){
+        elementUtil.sendKeys(amountInputField,"1500");
+    }
+
+    public void setDescriptionInputField(String inputForField){
+        elementUtil.sendKeys(descriptionInputField, inputForField);
+    }
+
+    public void submitCTAClick(){
+        elementUtil.clickCTA(submitTransaction);
+    }
+
+    public void cancelCTAClick(){
+        elementUtil.clickCTA(cancelCTA);
+    }
+
+    public void acceptAlert(){
+        wait.until(ExpectedConditions.alertIsPresent());
+        String actualAlert = driver.switchTo().alert().getText();
+        Assert.assertEquals(actualAlert, expectedAlertPostTransaction);
+
+        driver.switchTo().alert().accept();
+
+
     }
 }

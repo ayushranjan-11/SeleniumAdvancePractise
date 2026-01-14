@@ -37,8 +37,18 @@ public class ElementUtil {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public WebElement waitForElementClickable(By locator){
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(timeout));
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     public String getElementText(By locator){
         WebElement element = waitForElementVisible(locator);
         return element.getText();
+    }
+
+    public void clickCTA(By locator){
+        WebElement element = waitForElementClickable(locator);
+        element.click();
     }
 }
