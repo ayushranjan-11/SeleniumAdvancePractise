@@ -19,7 +19,7 @@ import org.testng.annotations.*;
 public class BaseTestClass {
     protected static WebDriver webDriver;
     protected FileInputStream fileInputStream;
-    protected Properties properties = new Properties();
+    protected static Properties properties = new Properties();
     protected Path path;
     protected static WebDriverWait wait;
 

@@ -41,7 +41,7 @@ public class QAPlaygroundTransaction {
     private By sendNotificationCheckBox = By.id("send-notification");
     private By cancelCTA = By.id("cancel-transaction-btn");
     private By submitTransaction = By.id("submit-transaction-btn");
-    private String expectedAlertPostTransaction = "Transaction completed successfully!";
+
 
     public void transactionCTAClick() {
 //        wait.until(ExpectedConditions.elementToBeClickable(transactionCTA));
@@ -102,12 +102,9 @@ public class QAPlaygroundTransaction {
         elementUtil.clickCTA(cancelCTA);
     }
 
-    public void acceptAlert(){
+    public String acceptAlert(){
         wait.until(ExpectedConditions.alertIsPresent());
-        String actualAlert = driver.switchTo().alert().getText();
-        Assert.assertEquals(actualAlert, expectedAlertPostTransaction);
-
-        driver.switchTo().alert().accept();
+        return driver.switchTo().alert().getText();
 
 
     }

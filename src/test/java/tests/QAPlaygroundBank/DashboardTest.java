@@ -1,13 +1,16 @@
 package tests.QAPlaygroundBank;
 
 import base.BaseTestClass;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
 import pages.QAPlaygroundBank.QAPlaygroundDashboardPage;
 import pages.QAPlaygroundBank.QAPlaygroundTransaction;
 
 public class DashboardTest extends BaseTestClass {
     QAPlaygroundDashboardPage dashboardPage;
     QAPlaygroundTransaction transactionAction;
+
 
     @Test(priority = 1)
     public void balanceCheck(){
@@ -24,6 +27,7 @@ public class DashboardTest extends BaseTestClass {
         transactionAction.setAmount();
         transactionAction.setDescriptionInputField("Description");
         transactionAction.submitCTAClick();
-        transactionAction.acceptAlert();
+        String actualAlert = transactionAction.acceptAlert();
+        Assert.assertEquals(actualAlert, properties.getProperty("expectedAlertPostTransaction"));
     }
 }
