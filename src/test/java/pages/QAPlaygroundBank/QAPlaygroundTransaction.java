@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import utils.BrowserUtil;
 import utils.ElementUtil;
 
 import java.util.List;
@@ -21,12 +23,14 @@ public class QAPlaygroundTransaction {
     //WebElement webElement;
     Select select;
     ElementUtil elementUtil;
+    BrowserUtil browserUtil;
     Logger logger = Logger.getLogger(QAPlaygroundTransaction.class.getName());
 
     public QAPlaygroundTransaction(WebDriver webDriver, WebDriverWait webDriverWait) {
         this.driver = webDriver;
         this.wait = webDriverWait;
         elementUtil = new ElementUtil(driver);
+        browserUtil = new BrowserUtil(driver);
         logger.setLevel(Level.FINE);
 
     }
@@ -102,10 +106,12 @@ public class QAPlaygroundTransaction {
         elementUtil.clickCTA(cancelCTA);
     }
 
-    public String acceptAlert(){
-        wait.until(ExpectedConditions.alertIsPresent());
-        return driver.switchTo().alert().getText();
-
-
+    public String getAlertText(){
+        return browserUtil.getAlertText();
     }
+
+    public void acceptAlert(){
+        browserUtil.acceptAlert();
+    }
+
 }

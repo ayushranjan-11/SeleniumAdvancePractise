@@ -66,10 +66,10 @@ public class BaseTestClass {
 //        webDriver.get(visitURL);
 //    }
 
-//     @AfterSuite
-//     public void quitBrowser() {
-//         if (webDriver != null) {
-//             webDriver.quit();
-//         } else System.out.println("Driver found to be null");
-//     }
+     @AfterSuite
+     public void quitBrowser() {
+         if (webDriver != null) {
+             webDriver.quit();
+         } else System.out.println("Driver found to be null");
+     }
 }
