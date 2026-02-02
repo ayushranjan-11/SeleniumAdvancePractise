@@ -3,7 +3,6 @@ package tests.QAPlaygroundBank;
 import base.BaseTestClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 import pages.QAPlaygroundBank.QAPlaygroundDashboardPage;
 import pages.QAPlaygroundBank.QAPlaygroundTransaction;
 
