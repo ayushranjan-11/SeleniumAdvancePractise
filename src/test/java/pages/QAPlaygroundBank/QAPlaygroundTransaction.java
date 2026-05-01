@@ -44,7 +44,8 @@ public class QAPlaygroundTransaction {
     private By sendNotificationCheckBox = By.id("send-notification");
     private By cancelCTA = By.id("cancel-transaction-btn");
     private By submitTransaction = By.id("submit-transaction-btn");
-    private By toastMessage = By.xpath("//li[@data-type='success']");
+    private By toastMessage = By.xpath("//li[@data-type='success']"); //Toast message can be identified with help of Chrome dev tool, where you have to inspect-> source and pause the page / debugger to identify the element
+
 
 
     public void transactionCTAClick() {
