@@ -51,4 +51,9 @@ public class ElementUtil {
         WebElement element = waitForElementClickable(locator);
         element.click();
     }
+
+    public String getToastMessage(By locator){
+        WebElement element = waitForElementVisible(locator);
+        return element.getDomProperty("textContent");
+    }
 }

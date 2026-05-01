@@ -26,12 +26,17 @@ public class DashboardTest extends BaseTestClass {
         transactionAction.setAmount();
         transactionAction.setDescriptionInputField("Description");
         transactionAction.submitCTAClick();
-        String actualAlert = transactionAction.getAlertText();
-        String expectedAlert = properties.getProperty("expectedAlertPostTransaction");
-        Assert.assertEquals(actualAlert, expectedAlert);
+        String actualToastMessage = transactionAction.getToastMessage();
+        String expectedToastMessage = properties.getProperty("expectedAlertPostTransaction");
+        Assert.assertEquals(actualToastMessage, expectedToastMessage);
 
-        if(actualAlert.equals(expectedAlert)) {
-            transactionAction.acceptAlert();
-        }
+//        String actualAlert = transactionAction.getAlertText();
+//        String expectedAlert = properties.getProperty("expectedAlertPostTransaction");
+//        Assert.assertEquals(actualAlert, expectedAlert);
+//
+//        if(actualAlert.equals(expectedAlert)) {
+//            transactionAction.acceptAlert();
+//        }
+        // Commenting the alert section as page has updated the alert format
     }
 }

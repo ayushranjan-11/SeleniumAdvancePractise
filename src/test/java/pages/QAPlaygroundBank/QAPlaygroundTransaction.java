@@ -5,24 +5,20 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import utils.BrowserUtil;
 import utils.ElementUtil;
 import utils.LogicUtil;
 
 import java.util.List;
-import java.util.logging.Level;
 
 //To make transaction across available account
 public class QAPlaygroundTransaction {
 
     WebDriver driver;
     WebDriverWait wait;
-    //WebElement webElement;
     Select select;
     ElementUtil elementUtil;
     BrowserUtil browserUtil;
@@ -48,6 +44,7 @@ public class QAPlaygroundTransaction {
     private By sendNotificationCheckBox = By.id("send-notification");
     private By cancelCTA = By.id("cancel-transaction-btn");
     private By submitTransaction = By.id("submit-transaction-btn");
+    private By toastMessage = By.xpath("//li[@data-type='success']");
 
 
     public void transactionCTAClick() {
@@ -94,7 +91,7 @@ public class QAPlaygroundTransaction {
 
         //select.selectByValue(fromAccountOptions.get(randomNumber).getDomProperty("value"));
         //This step can be also written like:
-        select.selectByValue(fromAccountOptions.get(logicUtil.randomNumberGenerator(fromAccountOptions.size())).getDomProperty("value"));
+        select.selectByValue(fromAccountOptions.get(logicUtil.randomNumberGenerator()).getDomProperty("value"));
     }
 
     public void setAmount(){
@@ -113,12 +110,16 @@ public class QAPlaygroundTransaction {
         elementUtil.clickCTA(cancelCTA);
     }
 
-    public String getAlertText(){
-        return browserUtil.getAlertText();
-    }
+//    public String getAlertText(){
+//        return browserUtil.getAlertText();
+//    }
+//
+//    public void acceptAlert(){
+//        browserUtil.acceptAlert();
+//    }
+//  The alert was removed from the website
 
-    public void acceptAlert(){
-        browserUtil.acceptAlert();
+    public String getToastMessage(){
+        return elementUtil.getToastMessage(toastMessage);
     }
-
 }
